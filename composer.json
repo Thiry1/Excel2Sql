@@ -1,0 +1,10 @@
+{
+   "repositories": [
+     {
+       "packagist": false
+     }
+   ],
+   "autoload": {
+     "psr-0": {"Excel2Sql": "lib"}
+   }
+}
