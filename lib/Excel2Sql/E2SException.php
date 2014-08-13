@@ -2,7 +2,7 @@
     /**
      * Excel2Sqlのメイン例外定義
      *
-     * @package Excel2Sql\E2SException
+     * @package Excel2Sql
      * @author Thiry
      * @since PHP 5.4
      * @version 1.0.0
