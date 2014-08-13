@@ -34,13 +34,23 @@
             require_once(__DIR__ . '/../PHPExcel.php');
             require_once(__DIR__ . '/../PHPExcel/IOFactory.php');
 
-            //ファイルの拡張子からExcelのフォーマットの識別する
+            $excel = null;//PHPExcelインスタンスを格納する
+
+            //ファイルの拡張子からExcelのフォーマットの識別し、適切なファイルオープン要求をする
             switch( pathinfo($filePath, PATHINFO_EXTENSION) )
             {
-                case 'xlsx':    return self::openExcelFile($filePath, 'Excel2007');    break;
-                case 'xls':     return self::openExcelFile($filePath, 'Excel5');       break;
+                case 'xlsx':    $excel = self::openExcelFile($filePath, 'Excel2007');    break;
+                case 'xls':     $excel = self::openExcelFile($filePath, 'Excel5');       break;
                 default:        throw new E2SException('invalid extension. Extension should be \'xlsx\' or \'xls\'');
             }
+
+
+            if( !($excel instanceof \PHPExcel) )
+            {
+                throw new E2SException('Cound\'t create PHPExcel instance');
+            }
+
+            return $excel;
         }
 
         /**
