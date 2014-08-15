@@ -25,7 +25,7 @@
         public static function open($filePath = null)
         {
             //ファイルパスが与えられていないかチェックする
-            if( $filePath === null )
+            if( null === $filePath )
             {
                 throw new \InvalidArgumentException('Excel file path not given.');
             }
