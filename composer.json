@@ -5,6 +5,9 @@
      }
    ],
    "autoload": {
-     "psr-0": {"Excel2Sql": "lib"}
+     "psr-4": {
+            "Excel2Sql\\": "lib/Excel2Sql",
+            "Excel2Sql\\Config\\": "config"
+        }
    }
 }
