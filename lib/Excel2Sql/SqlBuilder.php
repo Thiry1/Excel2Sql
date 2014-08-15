@@ -50,7 +50,6 @@
             $sb = new self(ExcelReader::open($filePath));
 
             $queries = $sb->build();
-
         }
 
         /**
@@ -89,7 +88,6 @@
             {
                 throw new E2SException('couldn\'t get SQL Template. column: ' . $this::CELL_SQL);
             }
-
         }
 
         /**
@@ -131,6 +129,5 @@
                 yield $colNum;
             }
         }
-
     }
 

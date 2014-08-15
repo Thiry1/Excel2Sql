@@ -34,7 +34,6 @@
                     throw new E2SException('Unknown Database Type');
             }
 
-
             return new \PDO($dsn, Config\DB::USER, Config\DB::PASSWORD);
         }
 
