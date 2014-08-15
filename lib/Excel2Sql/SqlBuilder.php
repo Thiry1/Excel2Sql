@@ -8,6 +8,7 @@
      * @version 1.0.0
      * @uses Excel2Sql\ExcelReader
      * @uses Excel2Sql\E2SException
+     * @uses Excel2Sql\DB
      */
     namespace Excel2Sql;
     use Excel2Sql\E2SException;
@@ -26,6 +27,13 @@
         private $colCount = 0;
 
         /**
+        * エクセルデータのデータ位置
+        *
+        * @property-read String SQL_CELL SQLテンプレートが格納されているセル
+        */
+        const SQL_CELL = 'B1';
+
+        /**
          * ExcelファイルからSQLを作成する
          *
          * @param String $filePath Excelファイルのパス
@@ -34,7 +42,12 @@
         public static function create($filePath = null)
         {
             $sb = new self(ExcelReader::open($filePath));
+
+            //シートからSQLのテンプレートを取得
+            $sqlTemp = $sb->getSqlPlaceHolder();
+
         }
+
         /**
          * SqlBuilderコンストラクタ
          *
@@ -53,9 +66,25 @@
             //シートの行数を取得
             $this->rowCount = $this->sheet->getHighestRow();
             //シートの列数を取得
-            $this->colCount = \PHPExcel_Cell::columnIndexFromString($this->sheet->getHighestColumn()) - 1;
+            $this->colCount = \PHPExcel_Cell::columnIndexFromString($this->sheet->getHighestColumn());
+
         }
 
+        /**
+         * ExcelからSQLテンプレートを取り出す
+         */
+        private function getSqlPlaceHolder()
+        {
+            $sql = $this->sheet->getCell( $this::SQL_CELL )->getValue();
+
+            //SQLの取り出しに失敗していれば例外を出す
+            if( null === $sql )
+            {
+                throw new E2SException('couldn\'t get SQL Template. column: ' . $this::SQL_CELL);
+            }
+
+            return $sql;
+        }
 
     }
 
