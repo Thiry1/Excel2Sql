@@ -29,9 +29,9 @@
         /**
         * エクセルデータのデータ位置
         *
-        * @property-read String SQL_CELL SQLテンプレートが格納されているセル
+        * @property-read String CELL_SQL SQLテンプレートが格納されているセル
         */
-        const SQL_CELL = 'B1';
+        const CELL_SQL = 'B1';
 
         /**
          * ExcelファイルからSQLを作成する
@@ -75,12 +75,12 @@
          */
         private function getSqlPlaceHolder()
         {
-            $sql = $this->sheet->getCell( $this::SQL_CELL )->getValue();
+            $sql = $this->sheet->getCell( $this::CELL_SQL )->getValue();
 
             //SQLの取り出しに失敗していれば例外を出す
             if( null === $sql )
             {
-                throw new E2SException('couldn\'t get SQL Template. column: ' . $this::SQL_CELL);
+                throw new E2SException('couldn\'t get SQL Template. column: ' . $this::CELL_SQL);
             }
 
             return $sql;
