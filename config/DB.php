@@ -4,7 +4,7 @@
      *
      * @package Excel2Sql\Config
      * @author Thiry
-     * @since PHP 5.4
+     * @since PHP 5.5
      * @version 1.0.0
      */
     namespace Excel2Sql\Config;
