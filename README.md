@@ -24,9 +24,9 @@ Excel2Sql\SqlBuilder::create('エクセルファイルへのパス')
 
 セルB1にSQLのプレースホルダを記述します。  
 **その際、名前付きプレースホルダは使用しないでください。(今後対応するかも)**
-例) insert into Product(ProductName,Price) values(?,?)
+例) insert into Product(ProductName,Price) values(?,?)  
   
-A4以降にデータを入れていきます。
+A4以降にデータを入れていきます。  
 |   | A     | B        |
 |---|-------|----------|
 | 4 | 商品1 | 1980     |
