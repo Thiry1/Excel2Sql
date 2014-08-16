@@ -46,8 +46,9 @@
          */
         public static function create($filePath = null)
         {
+            //Excelファイルを展開する
             $sb = new self(ExcelReader::open($filePath));
-
+            //クエリの作成、実行
             $sb->build();
         }
 
