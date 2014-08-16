@@ -97,7 +97,47 @@
          */
         private function build()
         {
+            //データベースコネクション
+            $con = DB::connect();
+            //prepare
+            $stmt = $con->prepare($this->sqlTemp);
 
+            //Excelのデータエリアの行番号を取得
+            foreach ( $this->row() as $rowNum )
+            {
+                $params = array();
+                //Excelのデータエリアの列番号を取得
+                foreach ( $this->col() as $colNum )
+                {
+                    //指定された行番号、列番号を元に該当セルから値を取得する
+                    $val = $this->sheet->getCellByColumnAndRow($colNum, $rowNum)->getCalculatedValue();
+
+                    switch( true )
+                    {
+                        //　文字としての'NULL','null'の場合はnullをパラメタに設定する
+                        case 'NULL' === strtoupper($val):
+                            $params[] = null;
+                            break;
+                        //　nullの場合(セルに何も入っていない)は空文字をパラメタに設定する
+                        case null === $val:
+                            $params[] = '';
+                            break;
+                        //文字、数字、boolean等の場合はそのままパラメタに設定する
+                        default:
+                            $params[] = $val;
+                            break;
+                    }
+                }
+
+                //クエリ実行
+                $status = $stmt->execute($params);
+
+                //クエリの実行に失敗していれば
+                if( !$status )
+                {
+                    throw new E2SException("failed to execute database query.\nreason: " . implode("\n", $stmt->errorInfo() ) );
+                }
+            }
         }
 
         /**
