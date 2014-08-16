@@ -80,7 +80,7 @@
          */
         private function setSqlPlaceHolder()
         {
-            $this->sqlTemp = $this->sheet->getCell( $this::CELL_SQL )->getValue();
+            $this->sqlTemp = $this->sheet->getCell( $this::CELL_SQL )->getCalculatedValue();
 
             //SQLの取り出しに失敗していれば例外を出す
             if( null === $this->sqlTemp )
