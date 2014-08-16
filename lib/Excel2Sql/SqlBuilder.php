@@ -43,13 +43,12 @@
          * ExcelファイルからSQLを作成する
          *
          * @param String $filePath Excelファイルのパス
-         * @return array
          */
         public static function create($filePath = null)
         {
             $sb = new self(ExcelReader::open($filePath));
 
-            $queries = $sb->build();
+            $sb->build();
         }
 
         /**
