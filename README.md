@@ -10,9 +10,11 @@ ExcelファイルからSQLを作成し実行するライトプログラム
 
 実行
 ===========
-
-Excel2Sql\SqlBuilder::create('エクセルファイルへのパス')
-
+```html+php
+<?php
+  require_once __DIR__ . '/vendor/autoload.php';  
+  Excel2Sql\SqlBuilder::create('エクセルファイルへのパス');  
+```
 
 設定
 ===========
