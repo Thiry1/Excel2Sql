@@ -40,7 +40,7 @@
         const CELL_DATA_START_COL = '0';
 
         /**
-         * ExcelファイルからSQLを作成する
+         * ExcelファイルからSQLを作成、実行する
          *
          * @param String $filePath Excelファイルのパス
          */
@@ -90,7 +90,7 @@
         }
 
         /**
-         * Excelからデータを抽出し、SQLテンプレートと合成する
+         * Excelからデータを抽出し、SQLテンプレートと合成する。その後生成されたクエリを実行する
          *
          * @return array
          */
