@@ -27,7 +27,7 @@ Excel2Sql\SqlBuilder::create('エクセルファイルへのパス')
 例) insert into Product(ProductName,Price) values(?,?)  
   
 A4以降にデータを入れていきます。  
-|   | A     | B        |
+| - | A     | B        |
 |---|-------|----------|
 | 4 | 商品1 | 1980     |
 | 5 | 商品2 | 2980     |
