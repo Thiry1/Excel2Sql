@@ -99,6 +99,10 @@
         {
             //データベースコネクション
             $con = DB::connect();
+
+            //トランザクション開始(auto commit無効化)
+            $con->beginTransaction();
+
             //prepare
             $stmt = $con->prepare($this->sqlTemp);
 
@@ -135,9 +139,14 @@
                 //クエリの実行に失敗していれば
                 if( !$status )
                 {
+                    //DBをロールバック
+                    $con->rollBack();
+
                     throw new E2SException("failed to execute database query.\nreason: " . implode("\n", $stmt->errorInfo() ) );
                 }
             }
+            //DBにコミット
+            $con->commit();
         }
 
         /**
