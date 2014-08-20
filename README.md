@@ -41,3 +41,8 @@ insert into Product(ProductName,Price) values('商品1',1980)
 insert into Product(ProductName,Price) values('商品2',2980)  
 insert into Product(ProductName,Price) values('商品3',100)  
 insert into Product(ProductName,Price) values('商品4',19555555)  
+
+ロールバック
+===========
+クエリの実行に失敗した場合は自動的にロールバックされます。
+**MySQLを使っている場合は、エンジンをInnoDBなどのロールバックに対応したものを使用してください**
